@@ -193,30 +193,38 @@ auth.onAuthStateChanged(user => {
 
       if (!snapshot.exists()) {
         list.innerHTML = "<div class='no-members'>No members have updated their status yet.</div>";
+        console.log("No members in database."); // Debug
         return;
       }
 
-      let hasActiveMembers = false;
+      let activeMembers = [];
       snapshot.forEach(child => {
         const data = child.val();
-        // Only show members who have actively updated (status set and time not default)
+        // Only include members who have actively updated (status set and time not default)
         if (data.status && data.status !== "NOT MARKED" && data.time && data.time !== "-") {
-          hasActiveMembers = true;
-          const card = document.createElement("div");
-          card.className = "member-card";
-          const statusIcon = data.status === "SAFE" ? "✅" : "🚨"; // Icons for interactivity
-          card.innerHTML = `
-            <div class="member-name">${data.name}</div>
-            <div class="member-status ${data.status.toLowerCase()}">${statusIcon} ${data.status}</div>
-            <div class="member-time">Updated: ${data.time}</div>
-          `;
-          list.appendChild(card);
+          activeMembers.push(data);
         }
       });
 
-      if (!hasActiveMembers) {
+      console.log("Members displayed:", activeMembers.length); // Debug: Count of active members
+
+      if (activeMembers.length === 0) {
         list.innerHTML = "<div class='no-members'>No members have updated their status yet.</div>";
+        return;
       }
+
+      // Display all active members
+      activeMembers.forEach(data => {
+        const card = document.createElement("div");
+        card.className = "member-card";
+        const statusIcon = data.status === "SAFE" ? "✅" : "🚨"; // Icons for interactivity
+        card.innerHTML = `
+          <div class="member-name">${data.name}</div>
+          <div class="member-status ${data.status.toLowerCase()}">${statusIcon} ${data.status}</div>
+          <div class="member-time">Updated: ${data.time}</div>
+        `;
+        list.appendChild(card);
+      });
     });
   }
 });
@@ -228,4 +236,3 @@ window.logout = function () {
     window.location.href = "login.html";
   });
 };
-
