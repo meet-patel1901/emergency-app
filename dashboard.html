@@ -10,7 +10,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
   <style>
-    /* General body - Mobile-first */
+    /* General body - Mobile-first, clean and minimal */
     body {
       margin: 0;
       padding: 0;
@@ -21,15 +21,16 @@
       min-height: 100vh;
       align-items: center;
       color: #333;
+      line-height: 1.5;
     }
 
-    /* Header */
+    /* Header - Compact for mobile */
     header {
       width: 100%;
       background: linear-gradient(90deg, #007bff, #0056b3);
       color: white;
-      padding: 15px 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 12px 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -40,144 +41,161 @@
 
     header h2 {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 600;
     }
 
     header .logout {
       background: #ff4d4f;
       border: none;
-      padding: 10px 15px;
+      padding: 8px 12px;
       color: white;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     header .logout:hover {
       background: #e63946;
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
-    /* Container */
+    /* Container - Flexible for mobile */
     .container {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 0 20px;
+      max-width: 550px;
+      margin: 15px auto;
+      padding: 0 15px;
     }
 
-    /* Panels */
+    /* Panels - Rounded, shadow for depth, mobile-optimized */
     .status-panel, .members-panel {
       background: white;
       width: 100%;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 18px;
+      margin-bottom: 18px;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
       text-align: center;
       transition: transform 0.3s ease;
     }
 
     .status-panel:hover, .members-panel:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
     }
 
     .status-panel h3, .members-panel h3 {
       margin-top: 0;
-      margin-bottom: 15px;
-      font-size: 1.2rem;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
       color: #333;
       font-weight: 600;
     }
 
-    /* Status buttons */
+    /* Status buttons - Larger, gradient, full-width on mobile */
     .status-panel button {
-      padding: 14px 24px;
-      margin: 8px;
+      padding: 12px 20px;
+      margin: 6px;
       border: none;
-      border-radius: 10px;
-      font-size: 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
       cursor: pointer;
       transition: all 0.3s ease;
       color: white;
-      min-width: 120px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      min-width: 110px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      font-weight: 500;
     }
 
     .status-panel .safe {
       background: linear-gradient(45deg, #28a745, #20c997);
     }
 
-    .status-panel .safe:hover {
+    .status-panel .safe:hover, .status-panel .safe:active {
       background: linear-gradient(45deg, #218838, #17a2b8);
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
 
     .status-panel .help {
       background: linear-gradient(45deg, #dc3545, #fd7e14);
     }
 
-    .status-panel .help:hover {
+    .status-panel .help:hover, .status-panel .help:active {
       background: linear-gradient(45deg, #c82333, #e8590c);
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
 
-    /* Message */
+    /* Message - Subtle styling */
     #message {
-      margin-top: 15px;
+      margin-top: 12px;
       font-weight: 500;
-      padding: 10px;
-      border-radius: 8px;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 0.9rem;
     }
 
-    /* Member list - Card-based */
+    /* Member list - Card-based, scrollable, mobile-friendly */
     #memberList {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
       padding: 0;
       margin: 0;
-      max-height: 400px;
+      max-height: 350px;
       overflow-y: auto;
+      scrollbar-width: thin; /* For Firefox */
+    }
+
+    #memberList::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #memberList::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
     }
 
     .member-card {
       background: #f8f9fa;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
       transition: all 0.3s ease;
-      animation: fadeIn 0.5s ease-in;
+      animation: fadeIn 0.4s ease-in;
+      border-left: 4px solid #007bff; /* Accent for visual interest */
     }
 
-    .member-card:hover {
+    .member-card:hover, .member-card:active {
       background: #e9ecef;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
 
     .member-name {
       font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 5px;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #333;
     }
 
     .member-status {
       font-weight: 500;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      margin-bottom: 5px;
+      padding: 4px 8px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .member-status.safe {
@@ -191,54 +209,73 @@
     }
 
     .member-time {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: #666;
+      font-style: italic;
     }
 
     .no-members {
       text-align: center;
       color: #666;
       font-style: italic;
-      padding: 20px;
+      padding: 15px;
+      font-size: 0.9rem;
     }
 
-    /* Animations */
+    /* Animations - Smooth fade-in */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Responsive */
+    /* Responsive - Stronger for mobile */
     @media (max-width: 600px) {
+      body {
+        padding: 0 5px;
+      }
       .container {
-        margin: 10px;
+        margin: 10px auto;
         padding: 0 10px;
       }
       header {
-        padding: 10px 15px;
+        padding: 10px 12px;
       }
       header h2 {
         font-size: 1.2rem;
       }
       .status-panel button {
         width: 100%;
-        margin: 5px 0;
-        padding: 16px;
-        font-size: 1.1rem;
+        margin: 4px 0;
+        padding: 14px;
+        font-size: 1rem;
+        min-width: unset;
       }
       .status-panel, .members-panel {
-        padding: 15px;
-        margin-bottom: 15px;
+        padding: 14px;
+        margin-bottom: 14px;
+        border-radius: 8px;
+      }
+      .status-panel h3, .members-panel h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
       }
       #memberList {
-        max-height: 300px;
-        gap: 10px;
+        max-height: 280px;
+        gap: 8px;
       }
       .member-card {
-        padding: 12px;
+        padding: 10px;
+        border-radius: 6px;
       }
       .member-name {
-        font-size: 1rem;
+        font-size: 0.95rem;
+      }
+      .member-status {
+        font-size: 0.8rem;
+        padding: 3px 6px;
+      }
+      .member-time {
+        font-size: 0.7rem;
       }
     }
   </style>
@@ -246,7 +283,7 @@
 <body>
 
 <header>
-  <h2>Emergency Dashboard</h2>
+  <h2>🚨 Emergency Dashboard</h2>
   <button class="logout" onclick="logout()">Logout</button>
 </header>
 
@@ -254,8 +291,8 @@
 
   <div class="status-panel">
     <h3>Update Your Status</h3>
-    <button class="safe" onclick="updateStatus('SAFE')">SAFE</button>
-    <button class="help" onclick="updateStatus('HELP')">HELP</button>
+    <button class="safe" onclick="updateStatus('SAFE')">✅ SAFE</button>
+    <button class="help" onclick="updateStatus('HELP')">🚨 HELP</button>
     <p id="message"></p>
   </div>
 
