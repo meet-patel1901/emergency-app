@@ -1,0 +1,118 @@
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f4f6f9;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.primary {
+  background: #007bff;
+  color: white;
+}
+
+.safe {
+  background: #28a745;
+  color: white;
+}
+
+.help {
+  background: #dc3545;
+  color: white;
+}
+
+.logout {
+  background: black;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #222;
+  color: white;
+}
+
+.container {
+  display: flex;
+  padding: 30px;
+  gap: 40px;
+}
+
+.status-panel, .members-panel {
+  background: white;
+  padding: 20px;
+  flex: 1;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Mobile responsiveness for login and register pages */
+@media (max-width: 600px) {
+  .center {
+    height: auto; /* Allow content to scroll naturally on mobile */
+    padding: 20px; /* Add padding to prevent edge clipping */
+  }
+  .card {
+    width: 100%; /* Full width on mobile */
+    max-width: 400px; /* Cap at 400px for readability */
+    padding: 20px; /* Reduce padding for smaller screens */
+  }
+  input {
+    padding: 12px; /* Larger touch targets */
+    font-size: 1rem; /* Readable text */
+  }
+  button.primary {
+    width: 100%; /* Full-width button for easy tapping */
+    padding: 12px;
+    font-size: 1rem;
+  }
+  h2 {
+    font-size: 1.5rem; /* Slightly smaller heading */
+  }
+  /* Additional mobile consistency for shared elements */
+  .container {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+}

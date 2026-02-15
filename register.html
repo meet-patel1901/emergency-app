@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Emergency System - Register Group</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <style>
+    /* Mobile responsiveness overrides */
+    @media (max-width: 600px) {
+      .center {
+        height: auto; /* Allow content to scroll naturally on mobile */
+        padding: 20px; /* Add padding to prevent edge clipping */
+      }
+      .card {
+        width: 100%; /* Full width on mobile */
+        max-width: 400px; /* Cap at 400px for readability */
+        padding: 20px; /* Reduce padding for smaller screens */
+      }
+      input {
+        padding: 12px; /* Larger touch targets */
+        font-size: 1rem; /* Readable text */
+      }
+      button.primary {
+        width: 100%; /* Full-width button for easy tapping */
+        padding: 12px;
+        font-size: 1rem;
+      }
+      h2 {
+        font-size: 1.5rem; /* Slightly smaller heading */
+      }
+    }
+  </style>
+</head>
+<body class="center">
+
+<div class="card">
+  <h2>Create Emergency Group</h2>
+
+  <input type="text" id="groupName" placeholder="Group Name">
+  <input type="email" id="email" placeholder="Group Email">
+  <input type="password" id="password" placeholder="Password (min 6 chars)">
+
+  <button class="primary" onclick="registerGroup()">Register</button>
+
+  <p id="message"></p>
+
+  <a href="login.html">Already Registered? Login</a>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

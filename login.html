@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Emergency System - Login</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <style>
+    /* Mobile responsiveness overrides */
+    @media (max-width: 600px) {
+      .center {
+        height: auto; /* Allow content to scroll naturally on mobile */
+        padding: 20px; /* Add padding to prevent edge clipping */
+      }
+      .card {
+        width: 100%; /* Full width on mobile */
+        max-width: 400px; /* Cap at 400px for readability */
+        padding: 20px; /* Reduce padding for smaller screens */
+      }
+      input {
+        padding: 12px; /* Larger touch targets */
+        font-size: 1rem; /* Readable text */
+      }
+      button.primary {
+        width: 100%; /* Full-width button for easy tapping */
+        padding: 12px;
+        font-size: 1rem;
+      }
+      h2 {
+        font-size: 1.5rem; /* Slightly smaller heading */
+      }
+    }
+  </style>
+</head>
+<body class="center">
+
+<div class="card">
+  <h2>Member Login</h2>
+
+  <!-- Remove groupUid input -->
+  <input type="text" id="memberName" placeholder="Your Name">
+  <input type="email" id="email" placeholder="Group Email">
+  <input type="password" id="password" placeholder="Password">
+
+  <button class="primary" onclick="memberLogin()">Login</button>
+
+  <p id="message"></p>
+
+  <a href="register.html">Create New Group</a>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
